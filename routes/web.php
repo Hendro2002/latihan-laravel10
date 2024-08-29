@@ -17,49 +17,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('home', [
+        'name' => 'mamaz',
+        'role' => 'staff',
+        'buah' => ['pisang', 'apel', 'jeruk', 'semangka', 'melon']
+    ]);
+});
+
 Route::get('/about', function () {
-    return view('about');
-});
-
-Route::get('/contact', function () {
-    return view('contact', ['name' => 'ujang', 'phone' => '081802026413']);
-});
-// Route::view('/contact', 'contact', ['name' => 'ujang', 'phone' => '081802026412']);
-
-// Route::redirect('/contact', 'contact-us');
-
-Route::get('/product', function () {
-    return 'product';
-});
-
-Route::get('/product/{id}', function ($id) {
-    return view('product.detail', ['id' => $id]);
-});
-
-
-
-Route::prefix('administrator')->group(function () {
-    Route::get('/profil-admin', function () {
-        return 'profil admin';
-    });
-
-    Route::get('/about-admin', function () {
-        return 'about admin';
-    });
-
-    Route::get('/contact-admin', function () {
-        return 'contact admin';
-    });
-
-    Route::get('/profil-admin2', function () {
-        return 'profil admin';
-    });
-
-    Route::get('/about-admin2', function () {
-        return 'about admin';
-    });
-
-    Route::get('/contact-admin2', function () {
-        return 'contact admin';
-    });
+    return view('about', [
+        'name' => 'mamaz',
+        'role' => 'staff',
+        'buah' => ['pisang', 'apel', 'jeruk', 'semangka', 'melon']
+    ]);
 });
