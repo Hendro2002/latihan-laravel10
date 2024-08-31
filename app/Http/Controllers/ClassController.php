@@ -9,6 +9,10 @@ class ClassController extends Controller
 {
     function index()
     {
+        
+        // lazy load
+        // $class = ClassRoom::all();
+        // eager load
         $class = ClassRoom::with('students')->get();
         return view('classroom', ['classList' => $class]);
 
