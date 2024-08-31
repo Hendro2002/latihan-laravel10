@@ -12,8 +12,9 @@ class StudentController extends Controller
     function index()
     {
         // eloquent
-        $student = Student::all();
+        $student = Student::with('class')->get();
         return view('students', ['studentList' => $student]);
+
         // create
         // Student::create([
         //     'name' => 'coba2',
@@ -48,7 +49,7 @@ class StudentController extends Controller
         // delete
         // DB::table('students')->where('id', 51)->delete();
 
-        $nilai=[1,4,5,3,5,3,4,3,4,3,42,3,4,3,2,1,2,3,4,3,2,23,];
+        // $nilai=[1,4,5,3,5,3,4,3,4,3,42,3,4,3,2,1,2,3,4,3,2,23,];
         // php biasa
         // // 1. hitung jumlah nilai
         // $countNilai = count($nilai);
