@@ -27,21 +27,21 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/home', function () {
-    return view('home', [
-        'name' => 'mamaz',
-        'role' => 'staff',
-        'buah' => ['pisang', 'apel', 'jeruk', 'semangka', 'melon']
-    ]);
-});
+// Route::get('/home', function () {
+//     return view('home', [
+//         'name' => 'mamaz',
+//         'role' => 'staff',
+//         'buah' => ['pisang', 'apel', 'jeruk', 'semangka', 'melon']
+//     ]);
+// });
 
-Route::get('/about', function () {
-    return view('about', [
-        'name' => 'mamaz',
-        'role' => 'staff',
-        'buah' => ['pisang', 'apel', 'jeruk', 'semangka', 'melon']
-    ]);
-});
+// Route::get('/about', function () {
+//     return view('about', [
+//         'name' => 'mamaz',
+//         'role' => 'staff',
+//         'buah' => ['pisang', 'apel', 'jeruk', 'semangka', 'melon']
+//     ]);
+// });
 
 Route::get('/students', [StudentController::class, 'index']);
 Route::get('/class', [ClassController::class, 'index']);
