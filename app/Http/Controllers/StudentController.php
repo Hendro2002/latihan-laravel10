@@ -12,7 +12,7 @@ class StudentController extends Controller
     function index()
     {
         // eloquent
-        $student = Student::with('class')->get();
+        $student = Student::with(['class', 'extracurriculars'])->get();
         return view('students', ['studentList' => $student]);
 
         // create

@@ -2,7 +2,7 @@
 @section('title', 'Home')
 @section('content')
     <h1>Ini Halaman Home</h1>
-    <h2>Selamat datang {{ $name }}, anda adalah {{ $role }}</h2>
+    {{-- <h2>Selamat datang {{ $name }}, anda adalah {{ $role }}</h2> --}}
 
     {{-- @if ($role == 'admin')
             <a href="#"><button class="btn btn-primary">Halaman Admin</button></a>
@@ -29,7 +29,7 @@
             <p>ini adalah perulangan ke-{{ $i }}</p>
         @endfor --}}
 
-    <table class="table">
+    {{-- <table class="table">
         <tr>
             <th>Id</th>
             <th>Nama</th>
@@ -40,6 +40,6 @@
                 <td>{{ $data }}</td>
             </tr>
         @endforeach
-    </table>
+    </table> --}}
 
 @endsection
