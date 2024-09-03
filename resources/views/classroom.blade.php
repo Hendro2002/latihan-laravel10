@@ -10,6 +10,7 @@
                 <th>No.</th>
                 <th>Kelas</th>
                 <th>Students</th>
+                <th>Homeroom Teacher</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +24,7 @@
                             - {{ $student->name }} <br>
                         @endforeach
                     </td>
+                    <td>{{ $data->homeroomTeacher->name }}</td>
                 </tr>
             @endforeach
         </tbody>
