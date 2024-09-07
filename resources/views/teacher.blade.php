@@ -8,8 +8,8 @@
         <thead>
             <tr>
                 <th>No.</th>
-                <th>Theacer</th>
-
+                <th>Teacher</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -17,6 +17,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->name }}</td>
+                    <td><a href="teacher-detail/{{ $item->id }}">Detail</a></td>
                 </tr>
             @endforeach
         </tbody>

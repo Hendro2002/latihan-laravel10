@@ -9,7 +9,8 @@
             <tr>
                 <th>No.</th>
                 <th>Extracurricular</th>
-                <th>Anggota</th>
+                {{-- <th>Anggota</th> --}}
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -17,11 +18,12 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $data->name }}</td>
-                    <td>
+                    {{-- <td>
                         @foreach ($data->students as $item)
                             - {{ $item->name }} <br>
                         @endforeach
-                    </td>
+                    </td> --}}
+                    <td><a href="extracurricular-detail/{{ $data->id }}">Detail</a></td>
                 </tr>
             @endforeach
         </tbody>
