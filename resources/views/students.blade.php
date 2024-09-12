@@ -3,6 +3,9 @@
 @section('content')
     <h1>Ini Halaman Students</h1>
     <h2>Selamat datang</h2>
+    <div class="mb-5">
+        <a href="student-add" class="btn btn-primary">Add Data</a>
+    </div>
     <h3>Student List</h3>
     {{-- <ol>
         @foreach ($studentList as $data)
@@ -11,6 +14,7 @@
             </li>
         @endforeach
     </ol> --}}
+
     <table class="table">
         <thead>
             <tr>

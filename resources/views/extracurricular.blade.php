@@ -3,6 +3,9 @@
 @section('content')
     <h1>Ini Halaman Extracurricular</h1>
     <h2>Selamat datang</h2>
+    <div class="mb-5">
+        <a href="extracurricular-add"class="btn btn-primary">Add Data</a>
+    </div>
     <h3>Extracurricular List</h3>
     <table class="table">
         <thead>

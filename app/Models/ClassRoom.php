@@ -12,18 +12,19 @@ class ClassRoom extends Model
     use HasFactory;
 
     protected $table = 'class';
-    
+
     public function students()
     {
         return $this->hasMany(Student::class, 'class_id', 'id');
     }
-    /**
-     * Get the user that owns the ClassRoom
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+
     public function homeroomTeacher(): BelongsTo
     {
         return $this->belongsTo(Teacher::class, 'teacher_id', 'id');
     }
+
+    protected $fillable = [
+        'name',
+        'teacher_id',
+    ];
 }

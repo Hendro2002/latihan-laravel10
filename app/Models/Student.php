@@ -21,9 +21,12 @@ class Student extends Model
         return $this->belongsToMany(Extracurricular::class, 'student_extracurricular', 'student_id', 'extracurricular_id');
     }
 
-    // protected $fillable = [
-    //     'name', 'gender', 'nis', 'class_id'
-    // ];
+    protected $fillable = [
+        'name',
+        'gender',
+        'nis',
+        'class_id'
+    ];
     // protected $table = 'student';
     // protected $primaryKey = 'id';
     // protected $keyType = 'integer';

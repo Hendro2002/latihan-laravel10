@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Doctrine\DBAL\Types\Type;
-use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Models\ClassRoom;
+use Illuminate\Http\Request;
+use Doctrine\DBAL\Types\Type;
 use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
@@ -21,6 +22,25 @@ class StudentController extends Controller
     {
         $student = Student::with(['class.homeroomTeacher', 'extracurriculars'])->findOrFail($id);
         return view('student-detail', ['student' => $student]);
+    }
+
+    function create()
+    {
+        $class = ClassRoom::select('id', 'name')->get();
+        return view('student-add', ['class' => $class]);
+    }
+
+    function store(Request $request)
+    {
+        // $student = new Student;
+        // $student->name = $request->name;
+        // $student->gender = $request->gender;
+        // $student->nis = $request->nis;
+        // $student->class_id = $request->class_id;
+        // $student->save();
+        // dd($request);
+        $student = Student::create($request->all());
+        return redirect('/students');
     }
     // create
     // Student::create([

@@ -17,9 +17,6 @@ use App\Http\Controllers\ExtracurricularController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('home');
-// });
 
 Route::get('/', function () {
     return view('home');
@@ -29,22 +26,22 @@ Route::get('/home', function () {
     return view('home');
 });
 
-// Route::get('/about', function () {
-//     return view('about', [
-//         'name' => 'mamaz',
-//         'role' => 'staff',
-//         'buah' => ['pisang', 'apel', 'jeruk', 'semangka', 'melon']
-//     ]);
-// });
-
 Route::get('/students', [StudentController::class, 'index']);
 Route::get('/student-detail/{id}', [StudentController::class, 'show']);
+Route::get('/student-add', [StudentController::class, 'create']);
+Route::post('/student-store', [StudentController::class, 'store']);
 
 Route::get('/class', [ClassController::class, 'index']);
 Route::get('/class-detail/{id}', [ClassController::class, 'show']);
+Route::get('/class-add', [ClassController::class, 'create']);
+Route::post('/class-store', [ClassController::class, 'store']);
 
 Route::get('/extracurricular', [ExtracurricularController::class, 'index']);
 Route::get('/extracurricular-detail/{id}', [ExtracurricularController::class, 'show']);
+Route::get('/extracurricular-add', [ExtracurricularController::class, 'create']);
+Route::post('/extracurricular-store', [ExtracurricularController::class, 'store']);
 
 Route::get('/teacher', [TeacherController::class, 'index']);
 Route::get('/teacher-detail/{id}', [TeacherController::class, 'show']);
+Route::get('/teacher-add', [TeacherController::class, 'create']);
+Route::post('/teacher-store', [TeacherController::class, 'store']);

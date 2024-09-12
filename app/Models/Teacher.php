@@ -14,4 +14,8 @@ class Teacher extends Model
     {
         return $this->hasOne(ClassRoom::class,);
     }
+
+    protected $fillable = [
+        'name',
+    ];
 }

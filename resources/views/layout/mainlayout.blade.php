@@ -25,16 +25,16 @@
                         <a class="nav-link active" aria-current="page" href="/home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/class">Class</a>
+                        <a class="nav-link active" aria-current="page" href="/class">Class</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/students">Students</a>
+                        <a class="nav-link active" aria-current="page" href="/students">Students</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/extracurricular">Extracurricular</a>
+                        <a class="nav-link active" aria-current="page" href="/extracurricular">Extracurricular</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/teacher">Teacher</a>
+                        <a class="nav-link active" aria-current="page" href="/teacher">Teacher</a>
                     </li>
                 </ul>
             </div>
