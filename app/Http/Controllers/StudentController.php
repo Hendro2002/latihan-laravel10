@@ -42,6 +42,26 @@ class StudentController extends Controller
         $student = Student::create($request->all());
         return redirect('/students');
     }
+
+    function edit(Request $request, $id)
+    {
+        $student = Student::findOrFail($id);
+        $class = ClassRoom::where('id', '!=', $student->class_id)->get(['id', 'name']);
+        return view('student-edit', ['student' => $student], ['class' => $class]);
+    }
+
+    function update(Request $request, $id)
+    {
+        $student = Student::findOrFail($id);
+
+        // $student->name = $request->name;
+        // $student->gender = $request->gender;
+        // $student->nis = $request->nis;
+        // $student->class_id = $request->class_id;
+        // $student->save();
+        $student->update($request->all());
+        return redirect('/students');
+    }
     // create
     // Student::create([
     //     'name' => 'coba2',

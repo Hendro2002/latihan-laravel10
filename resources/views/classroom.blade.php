@@ -29,7 +29,10 @@
                     {{-- @endforeach
                     </td> --}}
                     {{-- <td>{{ $data->homeroomTeacher->name }}</td> --}}
-                    <td><a href="class-detail/{{ $data->id }}">Detail</a></td>
+                    <td>
+                        <a href="class-detail/{{ $data->id }}">Detail</a>
+                        <a href="class-edit/{{ $data->id }}">Edit</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

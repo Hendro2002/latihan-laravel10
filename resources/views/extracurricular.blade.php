@@ -26,7 +26,9 @@
                             - {{ $item->name }} <br>
                         @endforeach
                     </td> --}}
-                    <td><a href="extracurricular-detail/{{ $data->id }}">Detail</a></td>
+                    <td><a href="extracurricular-detail/{{ $data->id }}">Detail</a>
+                        <a href="extracurricular-edit/{{ $data->id }}">Edit</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

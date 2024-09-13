@@ -37,7 +37,21 @@ class ClassController extends Controller
 
     function store(Request $request)
     {
-        $class = Classroom::create($request->all());
+        $class = ClassRoom::create($request->all());
+        return redirect('/class');
+    }
+
+    function edit(Request $request, $id)
+    {
+        $class = ClassRoom::with(['homeroomTeacher'])->findOrFail($id);
+        $teacher = Teacher::where('id', '!=', $class->teacher_id)->get();
+        return view('class-edit', ['class' => $class], ['teacher' => $teacher]);
+    }
+
+    function update(Request $request, $id)
+    {
+        $class = Classroom::findOrFail($id);
+        $class->update($request->all());
         return redirect('/class');
     }
 }
