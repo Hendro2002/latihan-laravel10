@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use App\Http\Requests\TeacherCreateRequest;
 
 class TeacherController extends Controller
 {
@@ -25,9 +27,14 @@ class TeacherController extends Controller
         return view('teacher-add');
     }
 
-    function store(Request $request)
+    function store(TeacherCreateRequest $request)
     {
+        $request->validated();
         $teacher = Teacher::create($request->all());
+        if ($teacher) {
+            Session::flash('status-add', 'success');
+            Session::flash('message-add', 'add new teacher success');
+        }
         return redirect('/teacher');
     }
 
@@ -41,6 +48,10 @@ class TeacherController extends Controller
     {
         $teacher = Teacher::findOrFail($id);
         $teacher->update($request->all());
+        if ($teacher) {
+            Session::flash('status-update', 'success');
+            Session::flash('message-update', 'update teacher success');
+        }
         return redirect('/teacher');
     }
 }

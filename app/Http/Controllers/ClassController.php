@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClassCreateRequest;
 use App\Models\Teacher;
 use App\Models\ClassRoom;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ClassController extends Controller
 {
@@ -35,9 +37,14 @@ class ClassController extends Controller
         return view('class-add', ['class' => $teacher]);
     }
 
-    function store(Request $request)
+    function store(ClassCreateRequest $request)
     {
+        $request->validated();
         $class = ClassRoom::create($request->all());
+        if ($class) {
+            Session::flash('status-add', 'success');
+            Session::flash('message-add', 'add new class success');
+        }
         return redirect('/class');
     }
 
@@ -52,6 +59,10 @@ class ClassController extends Controller
     {
         $class = Classroom::findOrFail($id);
         $class->update($request->all());
+        if ($class) {
+            Session::flash('status-update', 'success');
+            Session::flash('message-update', 'update class success');
+        }
         return redirect('/class');
     }
 }

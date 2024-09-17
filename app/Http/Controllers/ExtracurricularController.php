@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ExtracurricularCreateRequest;
 use Illuminate\Http\Request;
 use App\Models\Extracurricular;
+use Illuminate\Support\Facades\Session;
 
 class ExtracurricularController extends Controller
 {
@@ -25,9 +27,14 @@ class ExtracurricularController extends Controller
         return view('extracurricular-add');
     }
 
-    function store(Request $request)
+    function store(ExtracurricularCreateRequest $request)
     {
+        $request->validated();
         $extra = Extracurricular::create($request->all());
+        if ($extra) {
+            Session::flash('status-add', 'success');
+            Session::flash('message-add', 'add new extracurricular success');
+        }
         return redirect('/extracurricular');
     }
 
@@ -41,6 +48,10 @@ class ExtracurricularController extends Controller
     {
         $ekskul = Extracurricular::findOrFail($id);
         $ekskul->update($request->all());
+        if ($ekskul) {
+            Session::flash('status-update', 'success');
+            Session::flash('message-update', 'update extracurricular success');
+        }
         return redirect('/extracurricular');
     }
 }

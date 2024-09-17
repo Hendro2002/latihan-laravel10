@@ -3,17 +3,27 @@
 @section('content')
     <h1>Ini Halaman Penambahan Murid</h1>
 
+
     <div class="mt5 col-8 m-auto">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="/student-store" method="post">
             @csrf
             <div class="mb-3">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <input type="text" class="form-control" id="name" name="name">
             </div>
 
             <div class="mb-3">
                 <label for="gender">Gender</label>
-                <select name="gender" id="gender" class="form-select" required>
+                <select name="gender" id="gender" class="form-select">
                     <option value="">Select one</option>
                     <option value="L">Laki-Laki</option>
                     <option value="P">Perempuan</option>

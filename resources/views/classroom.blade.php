@@ -6,6 +6,17 @@
     <div class="mb-5">
         <a href="class-add" class="btn btn-primary">Add Data</a>
     </div>
+    @if (Session::has('status-add'))
+        <div class="alert alert-success" role="alert">
+            {{ Session::get('message-add') }}
+        </div>
+    @endif
+
+    @if (Session::has('status-update'))
+        <div class="alert alert-success" role="alert">
+            {{ Session::get('message-update') }}
+        </div>
+    @endif
     <h3>Class List</h3>
     <table class="table">
         <thead>

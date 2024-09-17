@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudentCreateRequest;
 use App\Models\Student;
 use App\Models\ClassRoom;
 use Illuminate\Http\Request;
 use Doctrine\DBAL\Types\Type;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class StudentController extends Controller
 {
@@ -30,8 +32,17 @@ class StudentController extends Controller
         return view('student-add', ['class' => $class]);
     }
 
-    function store(Request $request)
+    function store(StudentCreateRequest $request)
     {
+        // validate
+        // $validated = $request->validate([
+        //     'nis' => 'unique:students|max:10|required',
+        //     'name' => 'max:100|required',
+        //     'gender' => 'required',
+        //     'class_id' => 'required',
+        // ]);
+
+
         // $student = new Student;
         // $student->name = $request->name;
         // $student->gender = $request->gender;
@@ -39,7 +50,14 @@ class StudentController extends Controller
         // $student->class_id = $request->class_id;
         // $student->save();
         // dd($request);
+
+        $request->validated();
+
         $student = Student::create($request->all());
+        if ($student) {
+            Session::flash('status-add', 'success');
+            Session::flash('message-add', 'add new student success');
+        }
         return redirect('/students');
     }
 
@@ -60,8 +78,13 @@ class StudentController extends Controller
         // $student->class_id = $request->class_id;
         // $student->save();
         $student->update($request->all());
+        if ($student) {
+            Session::flash('status-update', 'success');
+            Session::flash('message-update', 'update student success');
+        }
         return redirect('/students');
     }
+
     // create
     // Student::create([
     //     'name' => 'coba2',

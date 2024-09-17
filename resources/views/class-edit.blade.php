@@ -31,8 +31,8 @@
 
         </form>
     </div>
-    {{ $class }}
-    {{ $teacher }}
+    {{-- {{ $class }}
+    {{ $teacher }} --}}
 
 
 @endsection
