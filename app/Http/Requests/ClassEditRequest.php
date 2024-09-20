@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ClassCreateRequest extends FormRequest
+class ClassEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -19,7 +19,6 @@ class ClassCreateRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-
     public function rules(): array
     {
         return [
@@ -31,8 +30,8 @@ class ClassCreateRequest extends FormRequest
     function messages()
     {
         return [
-            'name.max' => 'Nama Kelas tidak boleh lebih dari :max karakter',
-            'name.required' => 'Nama Kelas harus diisi',
+            'name.max' => 'Nama kelas tidak boleh lebih dari :max karakter',
+            'name.required' => 'Nama kelas harus diisi',
             'teacher_id.required' => 'Wali Kelas harus dipilih',
         ];
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ClassCreateRequest;
+use App\Http\Requests\ClassEditRequest;
 use App\Models\Teacher;
 use App\Models\ClassRoom;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class ClassController extends Controller
         // eager load
         // $class = ClassRoom::with('students', 'homeroomTeacher')->get();
         $class = ClassRoom::get();
-        return view('classroom', ['classList' => $class]);
+        return view('kelas.classroom', ['classList' => $class]);
 
 
         // var_dump('test');
@@ -28,13 +29,13 @@ class ClassController extends Controller
     function show($id)
     {
         $class = ClassRoom::with(['students', 'homeroomTeacher'])->findOrFail($id);
-        return view('class-detail', ['class' => $class]);
+        return view('kelas.class-detail', ['class' => $class]);
     }
 
     function create()
     {
         $teacher = Teacher::select('id', 'name')->get();
-        return view('class-add', ['class' => $teacher]);
+        return view('kelas.class-add', ['class' => $teacher]);
     }
 
     function store(ClassCreateRequest $request)
@@ -43,26 +44,47 @@ class ClassController extends Controller
         $class = ClassRoom::create($request->all());
         if ($class) {
             Session::flash('status-add', 'success');
-            Session::flash('message-add', 'add new class success');
+            Session::flash('message-add', 'Tambah Kelas baru berhasil !!!');
         }
-        return redirect('/class');
+        return redirect('/kelas/class');
     }
 
     function edit(Request $request, $id)
     {
         $class = ClassRoom::with(['homeroomTeacher'])->findOrFail($id);
+
         $teacher = Teacher::where('id', '!=', $class->teacher_id)->get();
-        return view('class-edit', ['class' => $class], ['teacher' => $teacher]);
+        return view('kelas.class-edit', ['class' => $class], ['teacher' => $teacher]);
     }
 
-    function update(Request $request, $id)
+    function update(ClassEditRequest $request, $id)
     {
         $class = Classroom::findOrFail($id);
+        $request->validated();
         $class->update($request->all());
         if ($class) {
             Session::flash('status-update', 'success');
-            Session::flash('message-update', 'update class success');
+            Session::flash('message-update', 'Update data Kelas berhasil !!!');
         }
-        return redirect('/class');
+        return redirect('/kelas/class');
+    }
+
+    function delete($id)
+    {
+        $class = Classroom::findOrFail($id);
+        return view('kelas.class-delete', ['class' => $class],);
+    }
+
+    function destroy($id)
+    {
+        $deleteClass = ClassRoom::findOrFail($id);
+        $deleteClass->delete();
+
+        if ($deleteClass) {
+            Session::flash('status-delete', 'success');
+            Session::flash('message-delete', 'Menghapus data Kelas berhasil !!!');
+        }
+
+        return redirect('/kelas/class');
     }
 }

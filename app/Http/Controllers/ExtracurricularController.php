@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ExtracurricularCreateRequest;
+use App\Http\Requests\ExtracurricularEditRequest;
 use Illuminate\Http\Request;
 use App\Models\Extracurricular;
 use Illuminate\Support\Facades\Session;
@@ -13,45 +14,65 @@ class ExtracurricularController extends Controller
     {
         // $ekskul = Extracurricular::with('students')->get();
         $ekskul = Extracurricular::get();
-        return view('extracurricular', ['ekskulList' => $ekskul]);
+        return view('ekskul.extracurricular', ['ekskulList' => $ekskul]);
     }
 
     function show($id)
     {
         $ekskul = Extracurricular::findOrFail($id);
-        return view('extracurricular-detail', ['ekskul' => $ekskul]);
+        return view('ekskul.extracurricular-detail', ['ekskul' => $ekskul]);
     }
 
     function create()
     {
-        return view('extracurricular-add');
+        return view('ekskul.extracurricular-add');
     }
 
     function store(ExtracurricularCreateRequest $request)
     {
         $request->validated();
-        $extra = Extracurricular::create($request->all());
-        if ($extra) {
+        $ekskul = Extracurricular::create($request->all());
+        if ($ekskul) {
             Session::flash('status-add', 'success');
-            Session::flash('message-add', 'add new extracurricular success');
+            Session::flash('message-add', 'Menambahkan Data Extrakurikuler baru berhasil !!!');
         }
-        return redirect('/extracurricular');
+        return redirect('/ekskul/extracurricular');
     }
 
     function edit(Request $request, $id)
     {
         $ekskul = Extracurricular::findOrFail($id);
-        return view('extracurricular-edit', ['ekskul' => $ekskul]);
+        return view('ekskul.extracurricular-edit', ['ekskul' => $ekskul]);
     }
 
-    function update(Request $request, $id)
+    function update(ExtracurricularEditRequest $request, $id)
     {
         $ekskul = Extracurricular::findOrFail($id);
+        $request->validated();
         $ekskul->update($request->all());
         if ($ekskul) {
             Session::flash('status-update', 'success');
-            Session::flash('message-update', 'update extracurricular success');
+            Session::flash('message-update', 'Update data Extrakurikuler berhasil !!!');
         }
-        return redirect('/extracurricular');
+        return redirect('/ekskul/extracurricular');
+    }
+
+    function delete($id)
+    {
+        $ekskul = Extracurricular::findOrFail($id);
+        return view('ekskul.extracurricular-delete', ['ekskul' => $ekskul],);
+    }
+
+    function destroy($id)
+    {
+        $deleteEkskul = Extracurricular::findOrFail($id);
+        $deleteEkskul->delete();
+
+        if ($deleteEkskul) {
+            Session::flash('status-delete', 'success');
+            Session::flash('message-delete', 'Menghapus data Extrakurikuler berhasil !!!');
+        }
+
+        return redirect('/ekskul/extracurricular');
     }
 }

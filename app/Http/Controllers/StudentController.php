@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StudentCreateRequest;
 use App\Models\Student;
 use App\Models\ClassRoom;
 use Illuminate\Http\Request;
 use Doctrine\DBAL\Types\Type;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\StudentEditRequest;
+use App\Http\Requests\StudentCreateRequest;
 
 class StudentController extends Controller
 {
@@ -17,19 +18,19 @@ class StudentController extends Controller
         // eloquent
         // $student = Student::with(['class.homeroomTeacher', 'extracurriculars'])->get();
         $student = Student::with(['class.homeroomTeacher', 'extracurriculars'])->get();
-        return view('students', ['studentList' => $student]);
+        return view('siswa.students', ['studentList' => $student]);
     }
 
     function show($id)
     {
         $student = Student::with(['class.homeroomTeacher', 'extracurriculars'])->findOrFail($id);
-        return view('student-detail', ['student' => $student]);
+        return view('siswa.student-detail', ['student' => $student]);
     }
 
     function create()
     {
         $class = ClassRoom::select('id', 'name')->get();
-        return view('student-add', ['class' => $class]);
+        return view('siswa.student-add', ['class' => $class]);
     }
 
     function store(StudentCreateRequest $request)
@@ -56,22 +57,22 @@ class StudentController extends Controller
         $student = Student::create($request->all());
         if ($student) {
             Session::flash('status-add', 'success');
-            Session::flash('message-add', 'add new student success');
+            Session::flash('message-add', 'Menambahkan data Siswa baru berhasil !!!');
         }
-        return redirect('/students');
+        return redirect('/siswa/students');
     }
 
     function edit(Request $request, $id)
     {
         $student = Student::findOrFail($id);
         $class = ClassRoom::where('id', '!=', $student->class_id)->get(['id', 'name']);
-        return view('student-edit', ['student' => $student], ['class' => $class]);
+        return view('siswa.student-edit', ['student' => $student], ['class' => $class]);
     }
 
-    function update(Request $request, $id)
+    function update(StudentEditRequest $request, $id)
     {
         $student = Student::findOrFail($id);
-
+        $request->validated();
         // $student->name = $request->name;
         // $student->gender = $request->gender;
         // $student->nis = $request->nis;
@@ -80,9 +81,29 @@ class StudentController extends Controller
         $student->update($request->all());
         if ($student) {
             Session::flash('status-update', 'success');
-            Session::flash('message-update', 'update student success');
+            Session::flash('message-update', 'Update data Siswa berhasil !!!');
         }
-        return redirect('/students');
+        return redirect('/siswa/students');
+    }
+
+    function delete($id)
+    {
+        $student = Student::findOrFail($id);
+        return view('siswa.student-delete', ['student' => $student],);
+    }
+
+    function destroy($id)
+    {
+        // $deleteStudent = DB::table('students')->where('id', $id)->delete();
+        $deleteStudent = Student::findOrFail($id);
+        $deleteStudent->delete();
+
+        if ($deleteStudent) {
+            Session::flash('status-delete', 'success');
+            Session::flash('message-delete', 'Menghapus data Siswa berhasil !!!');
+        }
+
+        return redirect('/siswa/students');
     }
 
     // create

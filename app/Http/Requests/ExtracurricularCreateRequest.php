@@ -29,8 +29,8 @@ class ExtracurricularCreateRequest extends FormRequest
     function messages()
     {
         return [
-            'name.max' => 'Nama tidak boleh lebih dari :max karakter',
-            'name.required' => 'Nama harus diisi',
+            'name.max' => 'Nama Ekskul tidak boleh lebih dari :max karakter',
+            'name.required' => 'Nama Ekskul harus diisi',
         ];
     }
 }

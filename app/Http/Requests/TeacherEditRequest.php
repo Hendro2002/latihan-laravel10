@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StudentCreateRequest extends FormRequest
+class TeacherEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,23 +22,15 @@ class StudentCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nis' => 'unique:students|max:10|required',
             'name' => 'max:100|required',
-            'gender' => 'required',
-            'class_id' => 'required',
         ];
     }
 
     function messages()
     {
         return [
-            'nis.max' => 'NIS tidak boleh lebih dari :max karakter',
-            'nis.required' => 'NIS harus diisi',
-            'nis.unique' => 'NIS sudah digunakan, harap ganti',
             'name.max' => 'Nama tidak boleh lebih dari :max karakter',
             'name.required' => 'Nama harus diisi',
-            'gender.required' => 'Gender harus dipilih',
-            'class_id.required' => 'Kelas harus dipilih'
         ];
     }
 }
