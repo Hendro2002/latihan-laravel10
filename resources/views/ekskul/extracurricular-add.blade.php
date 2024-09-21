@@ -7,6 +7,7 @@
                 <center>
                     <h1>Form Tambah Ekstrakurikuler</h1>
                 </center>
+
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -17,10 +18,10 @@
                     </div>
                 @endif
             </div>
+
             <div class="card-body">
                 <form action="/extracurricular-store" method="post">
                     @csrf
-
                     <div class="mb-3">
                         <label for="" class="form-label">Nama Ekstrakurikuler</label>
                         <input type="text" class="form-control" name="name">
@@ -37,5 +38,4 @@
             </div>
         </div>
     </div>
-
 @endsection

@@ -67,12 +67,43 @@ class TeacherController extends Controller
     {
         $deleteTeacher = Teacher::findOrFail($id);
         $deleteTeacher->delete();
-
         if ($deleteTeacher) {
             Session::flash('status-delete', 'success');
             Session::flash('message-delete', 'Menghapus data Guru berhasil !!!');
         }
 
         return redirect('/guru/teacher');
+    }
+
+    function deletedTeacher()
+    {
+        $deletedTeacher = Teacher::onlyTrashed()->get();
+        return view('guru.teacher-deleted-list', ['teacher' => $deletedTeacher]);
+    }
+
+    function restore($id)
+    {
+        $deletedTeacher = Teacher::withTrashed()->where('id', $id)->restore();
+        if ($deletedTeacher) {
+            Session::flash('status-restore', 'success');
+            Session::flash('message-restore', 'Restore data Guru berhasil !!!');
+        }
+        return redirect('/guru/teacher-deleted',);
+    }
+
+    function deletePermanent($id)
+    {
+        $teacher = Teacher::withTrashed()->findOrFail($id);
+        return view('guru.teacher-delete-permanent', ['teacher' => $teacher],);
+    }
+
+    function forceDestroy($id)
+    {
+        $teacher = Teacher::withTrashed()->findOrFail($id)->forceDelete();
+        if ($teacher) {
+            Session::flash('status-restore', 'success');
+            Session::flash('message-restore', 'Hapus data guru secara Permanen berhasil !!!');
+        }
+        return redirect('/guru/teacher-deleted');
     }
 }

@@ -1,5 +1,5 @@
 @extends('layout.mainlayout')
-@section('title', 'Detail Ekstrakurikuler {{ $ekskul->name }}')
+@section('title', 'Detail Ekstrakurikuler')
 @section('content')
     <div class="container my-3">
         <a href="/ekskul/extracurricular" class="btn btn-primary">Kembali</a>
@@ -9,6 +9,7 @@
                     <h1>Detail Ekstrakurikuler {{ $ekskul->name }}</h1>
                 </center>
             </div>
+
             <div class="card-body">
                 <div class="table-responsive mt-3">
                     <table class="table table-hover table-striped">
@@ -16,6 +17,7 @@
                             <th>Nama Ekstrakurikuler</th>
                             <td>{{ $ekskul->name }}</td>
                         </tr>
+
                         <tr>
                             <th>Siswa</th>
                             <td>

@@ -1,14 +1,16 @@
 @extends('layout.mainlayout')
-@section('title', 'Detail Guru {{ $teacher->name }}')
+@section('title', 'Detail Guru')
 @section('content')
     <div class="container my-3">
         <a href="/guru/teacher" class="btn btn-primary">Kembali</a>
+
         <div class="card mt-3">
             <div class="card-header">
                 <center>
                     <h1>Detail Guru {{ $teacher->name }}</h1>
                 </center>
             </div>
+
             <div class="card-body">
                 <div class="table-responsive mt-3">
                     <table class="table table-hover table-striped">
@@ -16,6 +18,7 @@
                             <th>Nama</th>
                             <td>{{ $teacher->name }}</td>
                         </tr>
+
                         <tr>
                             <th>Kelas</th>
                             {{-- <td>{{ $teacher->class->name }}</td> --}}
@@ -27,6 +30,7 @@
                                 @endif
                             </td>
                         </tr>
+
                         <tr>
                             <th>Siswa</th>
                             <td>

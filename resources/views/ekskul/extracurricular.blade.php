@@ -1,12 +1,11 @@
 @extends('layout.mainlayout')
-@section('title', 'Ekstrakurikuler')
+@section('title', 'Data Ekstrakurikuler')
 @section('content')
-
-
     <div class="container my-3">
         <center>
             <h1>Data Ekstrakurikuler</h1>
         </center>
+
         @if (Session::has('status-add'))
             <div class="alert alert-success" role="alert">
                 {{ Session::get('message-add') }}
@@ -24,9 +23,14 @@
                 {{ Session::get('message-delete') }}
             </div>
         @endif
+
         <hr>
-        <a href="extracurricular-add" class="btn btn-primary">Tambah Data</a>
+        <div class="d-flex justify-content-between">
+            <a href="extracurricular-add" class="btn btn-primary">Tambah Data</a>
+            <a href="extracurricular-deleted" class="btn btn-info">Data Terhapus</a>
+        </div>
         <hr>
+
         <div class="table-responsive">
             <table class="table table-hover table-striped">
                 <thead>
@@ -36,6 +40,7 @@
                         <th>Aksi</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     @if ($ekskulList->count() > 0)
                         @foreach ($ekskulList as $data)

@@ -1,35 +1,22 @@
 @extends('layout.mainlayout')
-@section('title', 'Data Siswa')
+@section('title', 'List Murid Terhapus')
 @section('content')
     <div class="container my-3">
         <center>
-            <h1>Data Siswa</h1>
+            <h1>Data Siswa Terhapus</h1>
         </center>
-
-        @if (Session::has('status-add'))
-            <div class="alert alert-success" role="alert">
-                {{ Session::get('message-add') }}
-            </div>
-        @endif
-
-        @if (Session::has('status-update'))
-            <div class="alert alert-success" role="alert">
-                {{ Session::get('message-update') }}
-            </div>
-        @endif
-
-        @if (Session::has('status-delete'))
-            <div class="alert alert-success" role="alert">
-                {{ Session::get('message-delete') }}
-            </div>
-        @endif
 
         <hr>
         <div class="d-flex justify-content-between">
-            <a href="student-add" class="btn btn-primary">Tambah Data</a>
-            <a href="student-deleted" class="btn btn-info">Data Terhapus</a>
+            <a href="/siswa/students" class="btn btn-primary">Kembali</a>
         </div>
         <hr>
+
+        @if (Session::has('status-restore'))
+            <div class="alert alert-success" role="alert">
+                {{ Session::get('message-restore') }}
+            </div>
+        @endif
 
         <div class="table-responsive">
             <table class="table table-hover table-striped">
@@ -47,8 +34,8 @@
                 </thead>
 
                 <tbody>
-                    @if ($studentList->count() > 0)
-                        @foreach ($studentList as $data)
+                    @if ($student->count() > 0)
+                        @foreach ($student as $data)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $data->name }}</td>
@@ -62,15 +49,14 @@
                                 </td>
                                 <td>{{ $data->class->homeroomTeacher->name }}</td>
                                 <td>
-                                    <a href="student-detail/{{ $data->id }}" class="btn btn-secondary">Detail</a>
-                                    <a href="student-edit/{{ $data->id }}" class="btn btn-warning">Edit</a>
-                                    <a href="student-delete/{{ $data->id }}" class="btn btn-danger">Delete</a>
+                                    <a href="/siswa/student/{{ $data->id }}/restore" class="btn btn-success">Restore</a>
+                                    <a href="student-delete-permanent/{{ $data->id }}" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="6">
+                            <td colspan="8">
                                 <center>
                                     <h3>Data Kosong</h3>
                                 </center>

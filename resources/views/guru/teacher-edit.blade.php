@@ -1,5 +1,5 @@
 @extends('layout.mainlayout')
-@section('title', 'Edit Guru {{ $teacher->name }}')
+@section('title', 'Edit Guru')
 @section('content')
     <div class="container my-3">
         <div class="card">
@@ -7,6 +7,7 @@
                 <center>
                     <h1>Form Edit Data Guru {{ $teacher->name }}</h1>
                 </center>
+
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -17,6 +18,7 @@
                     </div>
                 @endif
             </div>
+
             <div class="card-body">
                 <form action="/teacher-update/{{ $teacher->id }}" method="post">
                     @method('PUT')
@@ -24,6 +26,7 @@
                     <center>
                         <h3>Identitas Guru</h3>
                     </center>
+
                     <div class="mb-3">
                         <label for="" class="form-label">Nama</label>
                         <input type="text" class="form-control" name="name" value="{{ $teacher->name }}">
@@ -40,5 +43,4 @@
             </div>
         </div>
     </div>
-
 @endsection

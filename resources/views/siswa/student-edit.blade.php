@@ -1,5 +1,5 @@
 @extends('layout.mainlayout')
-@section('title', 'Edit Siswa {{ $student->name }}')
+@section('title', 'Edit Siswa')
 @section('content')
     <div class="container my-3">
         <a href="/siswa/students" class="btn btn-primary">Kembali</a>
@@ -8,6 +8,7 @@
                 <center>
                     <h1>Form Edit Siswa</h1>
                 </center>
+
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -18,6 +19,7 @@
                     </div>
                 @endif
             </div>
+
             <div class="card-body">
                 <form action="/student-update/{{ $student->id }}" method="post">
                     @method('PUT')
@@ -25,10 +27,12 @@
                     <center>
                         <h3>Identitas Siswa {{ $student->name }}</h3>
                     </center>
+
                     <div class="mb-3">
                         <label for="" class="form-label">Nama</label>
                         <input type="text" class="form-control" name="name" value="{{ $student->name }}">
                     </div>
+
                     <div class="mb-3">
                         <label for="" class="form-label">NIS</label>
                         <input type="text" class="form-control" name="nis" value="{{ $student->nis }}">
@@ -55,6 +59,7 @@
                             @endforeach
                         </select>
                     </div>
+
                     <div class="my-2">
                         <center>
                             <a href="/siswa/students" class="btn btn-secondary">Kembali</a>

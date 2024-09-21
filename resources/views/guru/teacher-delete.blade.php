@@ -1,5 +1,5 @@
 @extends('layout.mainlayout')
-@section('title', 'Hapus Data Guru {{ $teacher->name }}')
+@section('title', 'Hapus Data Guru')
 @section('content')
     <div class="container my-3">
         <a href="/guru/teacher" class="btn btn-primary">Kembali</a>
@@ -22,10 +22,7 @@
                         <a href="/guru/teacher" class="btn btn-primary">Cancel</a>
                     </center>
                 </div>
-                </form>
             </div>
-
         </div>
     </div>
-
 @endsection

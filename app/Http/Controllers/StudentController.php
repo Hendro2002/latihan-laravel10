@@ -53,7 +53,6 @@ class StudentController extends Controller
         // dd($request);
 
         $request->validated();
-
         $student = Student::create($request->all());
         if ($student) {
             Session::flash('status-add', 'success');
@@ -97,13 +96,44 @@ class StudentController extends Controller
         // $deleteStudent = DB::table('students')->where('id', $id)->delete();
         $deleteStudent = Student::findOrFail($id);
         $deleteStudent->delete();
-
         if ($deleteStudent) {
             Session::flash('status-delete', 'success');
             Session::flash('message-delete', 'Menghapus data Siswa berhasil !!!');
         }
 
         return redirect('/siswa/students');
+    }
+
+    function deletedStudent()
+    {
+        $deletedStudent = Student::onlyTrashed()->get();
+        return view('siswa.student-deleted-list', ['student' => $deletedStudent]);
+    }
+
+    function restore($id)
+    {
+        $deletedStudent = Student::withTrashed()->where('id', $id)->restore();
+        if ($deletedStudent) {
+            Session::flash('status-restore', 'success');
+            Session::flash('message-restore', 'Restore data Siswa berhasil !!!');
+        }
+        return redirect('/siswa/student-deleted',);
+    }
+
+    function deletePermanent($id)
+    {
+        $student = Student::withTrashed()->findOrFail($id);
+        return view('siswa.student-delete-permanent', ['student' => $student],);
+    }
+
+    function forceDestroy($id)
+    {
+        $student = Student::withTrashed()->findOrFail($id)->forceDelete();
+        if ($student) {
+            Session::flash('status-restore', 'success');
+            Session::flash('message-restore', 'Hapus data Siswa secara Permanen berhasil !!!');
+        }
+        return redirect('/siswa/student-deleted');
     }
 
     // create

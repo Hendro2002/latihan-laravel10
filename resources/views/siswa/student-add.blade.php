@@ -7,6 +7,7 @@
                 <center>
                     <h1>Form Tambah Siswa</h1>
                 </center>
+
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -17,20 +18,24 @@
                     </div>
                 @endif
             </div>
+
             <div class="card-body">
                 <form action="/student-store" method="post">
                     @csrf
                     <center>
                         <h3>Identitas Siswa</h3>
                     </center>
+
                     <div class="mb-3">
                         <label for="" class="form-label">Nama</label>
                         <input type="text" class="form-control" name="name">
                     </div>
+
                     <div class="mb-3">
                         <label for="" class="form-label">NIS</label>
                         <input type="text" class="form-control" name="nis">
                     </div>
+
                     <div class="mb-3">
                         <label for="gender" class="form-label">Jenis Kelamin</label>
                         <select name="gender" id="" class="form-select">
@@ -39,6 +44,7 @@
                             <option value="P">Perempuan</option>
                         </select>
                     </div>
+
                     <div class="mb-3">
                         <label for="class">Kelas</label>
                         <select name="class_id" class="form-select">
@@ -48,6 +54,7 @@
                             @endforeach
                         </select>
                     </div>
+
                     <div class="my-2">
                         <center>
                             <a href="/siswa/students" class="btn btn-secondary">Kembali</a>
@@ -59,5 +66,4 @@
             </div>
         </div>
     </div>
-
 @endsection

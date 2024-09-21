@@ -1,5 +1,5 @@
 @extends('layout.mainlayout')
-@section('title', 'Edit Ekstrakurikuler {{ $ekskul->name }}')
+@section('title', 'Edit Ekstrakurikuler')
 @section('content')
     <div class="container my-3">
         <div class="card">
@@ -7,6 +7,7 @@
                 <center>
                     <h1>Form Edit Ekstrakurikiler</h1>
                 </center>
+
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -17,6 +18,7 @@
                     </div>
                 @endif
             </div>
+
             <div class="card-body">
                 <form action="/extracurricular-update/{{ $ekskul->id }}" method="POST">
                     @method('PUT')
@@ -37,6 +39,4 @@
             </div>
         </div>
     </div>
-
-
 @endsection

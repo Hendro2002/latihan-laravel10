@@ -1,9 +1,8 @@
 @extends('layout.mainlayout')
-@section('title', 'Hapus Murid {{ $student->name }}')
+@section('title', 'Hapus Murid')
 @section('content')
     <div class="container my-3">
         <a href="/siswa/students" class="btn btn-primary">Kembali</a>
-
         <div class="card mt-3">
             <div class="card-header">
                 <center>
@@ -29,10 +28,7 @@
                         <a href="/siswa/students" class="btn btn-primary">Cancel</a>
                     </center>
                 </div>
-                </form>
             </div>
-
         </div>
     </div>
-
 @endsection

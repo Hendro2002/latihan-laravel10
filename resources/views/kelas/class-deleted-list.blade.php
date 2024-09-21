@@ -1,35 +1,22 @@
 @extends('layout.mainlayout')
-@section('title', 'Data Kelas')
+@section('title', 'Data Kelas Terhapus')
 @section('content')
     <div class="container my-3">
         <center>
-            <h1>Data Kelas</h1>
+            <h1>Data Kelas Terhapus</h1>
         </center>
-
-        @if (Session::has('status-add'))
-            <div class="alert alert-success" role="alert">
-                {{ Session::get('message-add') }}
-            </div>
-        @endif
-
-        @if (Session::has('status-update'))
-            <div class="alert alert-success" role="alert">
-                {{ Session::get('message-update') }}
-            </div>
-        @endif
-
-        @if (Session::has('status-delete'))
-            <div class="alert alert-success" role="alert">
-                {{ Session::get('message-delete') }}
-            </div>
-        @endif
 
         <hr>
         <div class="d-flex justify-content-between">
-            <a href="class-add" class="btn btn-primary">Tambah Data</a>
-            <a href="class-deleted" class="btn btn-info">Data Terhapus</a>
+            <a href="/kelas/class" class="btn btn-primary">Kembali</a>
         </div>
         <hr>
+
+        @if (Session::has('status-restore'))
+            <div class="alert alert-success" role="alert">
+                {{ Session::get('message-restore') }}
+            </div>
+        @endif
 
         <div class="table-responsive">
             <table class="table table-hover table-striped">
@@ -42,15 +29,14 @@
                 </thead>
 
                 <tbody>
-                    @if ($classList->count() > 0)
-                        @foreach ($classList as $data)
+                    @if ($class->count() > 0)
+                        @foreach ($class as $data)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $data->name }}</td>
                                 <td>
-                                    <a href="class-detail/{{ $data->id }}" class="btn btn-secondary">Detail</a>
-                                    <a href="class-edit/{{ $data->id }}" class="btn btn-warning">Edit</a>
-                                    <a href="class-delete/{{ $data->id }}" class="btn btn-danger">Delete</a>
+                                    <a href="/kelas/class/{{ $data->id }}/restore" class="btn btn-success">Restore</a>
+                                    <a href="class-delete-permanent/{{ $data->id }}" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                         @endforeach
